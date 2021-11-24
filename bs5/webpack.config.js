@@ -68,31 +68,10 @@ module.exports = {
       {
         //file-loader の対象となるファイルの拡張子
         test: /\.(gif|png|jpe?g|svg|eot|wof|woff|ttf)$/i,
-        use: [
-          {
-            //画像を出力フォルダーにコピーするローダー
-            loader: 'file-loader',
-            options: {
-              // 画像ファイルの名前とパスの設定
-              name: './images/[name].[ext]'
-            }
-          }
-        ],
-      },
-      {
-        // Babel 用のローダー
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: [
-                '@babel/preset-env',
-              ]
-            }
-          }
-        ]
+        generator: {
+          filename: 'imagse/[name][ext][query]'
+        },
+        type: 'asset/resource',
       },
     ],
   },
